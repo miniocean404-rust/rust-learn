@@ -11,7 +11,12 @@ fn main() {
     loop {
         io::stdin().read_line(&mut input).expect("输入错误");
 
-        let input: i32 = input.trim().parse().expect("请输入数字");
+        let input: i32 = match input.trim().parse() {
+            Ok(s) => s,
+            Err(_) => continue,
+        };
+
+        // let input: i32 = input.trim().parse().expect("请输入数字");
 
         println!("您的输入是 {}", input);
 

@@ -3,8 +3,8 @@
 // 必须为结构体显式的声明 Debug 功能，主要是使得结构体派生于 Debug
 // derive 派生
 #[derive(Debug)]
-struct Rect {
-    width: i8,
+pub struct Rect {
+    pub width: i8,
     height: i8,
 }
 

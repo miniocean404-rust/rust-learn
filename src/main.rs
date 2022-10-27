@@ -3,13 +3,16 @@ use std::cmp::Ordering;
 use std::io;
 
 fn main() {
-    let mut input: String = String::new();
-
-    let radom: i32 = rand::thread_rng().gen_range(1..=100);
+    let radom: i32 = rand::thread_rng().gen_range(0..=100);
     println!("神秘数字 {}", radom);
 
+    println!("{}", 2);
     loop {
+        let mut input: String = String::new();
+
         io::stdin().read_line(&mut input).expect("输入错误");
+
+        println!("input {}", input);
 
         let input: i32 = match input.trim().parse() {
             Ok(s) => s,

@@ -7,5 +7,6 @@ edition = "2021"
 
 [dependencies]
 rand = "0.8.5"
+
 # cargo watch -x "run"
-cargo-watch = "8.1.2"
+# cargo-watch = "8.1.2"

@@ -1,32 +1,10 @@
-use rand::Rng;
-use std::cmp::Ordering;
-use std::io;
+use learn_base::api::use_struct;
+use learn_base::example::read_line;
 
 fn main() {
-    let radom: i32 = rand::thread_rng().gen_range(0..=100);
-    println!("神秘数字 {}", radom);
+    // 结构体展示
+    use_struct::show_struct_example();
 
-    println!("{}", 2);
-    loop {
-        let mut input: String = String::new();
-
-        io::stdin().read_line(&mut input).expect("输入错误");
-
-        println!("input {}", input);
-
-        let input: i32 = match input.trim().parse() {
-            Ok(s) => s,
-            Err(_) => continue,
-        };
-
-        // let input: i32 = input.trim().parse().expect("请输入数字");
-
-        println!("您的输入是 {}", input);
-
-        match input.cmp(&radom) {
-            Ordering::Less => println!("小于"),
-            Ordering::Greater => println!("大于"),
-            Ordering::Equal => println!("差不多"),
-        }
-    }
+    // 输入例子展示i
+    read_line::read_line();
 }

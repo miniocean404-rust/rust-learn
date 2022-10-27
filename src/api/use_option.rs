@@ -4,3 +4,10 @@ fn use_option() {
     let x: Option<i32> = Some(1);
     let y: Option<i32> = None;
 }
+
+fn match_option(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1),
+    }
+}

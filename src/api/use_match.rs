@@ -7,6 +7,8 @@ enum Mode {
     V1,
     V2,
     Match(Mode2),
+    V3,
+    V4,
 }
 
 fn show_match(mode: Mode) -> u8 {
@@ -17,6 +19,8 @@ fn show_match(mode: Mode) -> u8 {
             println!("{:#?}", state);
             25
         }
+        // 本身需要列举枚举所有类型，但是不需要处理的可以 设置 _ => ()
+        _ => 0,
     }
 }
 

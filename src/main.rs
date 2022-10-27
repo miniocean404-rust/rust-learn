@@ -8,5 +8,9 @@ fn main() {
     // 结构体展示
     use_struct::format_struct_example();
 
-    use_struct::get_area()
+    // 结构体方法
+    use_struct::get_area();
+
+    // 关联函数
+    use_struct::show_relevance_fn();
 }

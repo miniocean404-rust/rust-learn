@@ -4,3 +4,4 @@ pub mod use_if_let;
 pub mod use_match;
 pub mod use_option;
 pub mod use_struct;
+pub mod use_vector;

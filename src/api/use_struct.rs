@@ -15,8 +15,8 @@ impl Rect {
 
     fn relevance_fn(size: i8) -> Rect {
         Rect {
-            width: 1,
-            height: 1,
+            width: size,
+            height: size,
         }
     }
 }

@@ -8,4 +8,5 @@
 // pub mod use_struct;
 // pub mod use_err;
 // pub mod use_vector;
-pub mod use_genericity;
+// pub mod use_genericity;
+pub mod use_trait;

@@ -10,3 +10,9 @@ rand = "0.8.5"
 
 # cargo watch -x "run"
 # cargo-watch = "8.1.2"
+
+[profile.release]
+# pinic 时的操作 默认为 展开 可选改为中断
+# 展开时候程序会将调用栈往回走，清理内存
+# 中断时候会直接停止程序，需要系统清理内存，但是这样打出的包小
+panic = "abort"

@@ -5,5 +5,6 @@
 // pub mod use_match;
 // pub mod use_option;
 // pub mod use_string;
-pub mod use_struct;
+// pub mod use_struct;
+// pub mod use_err;
 // pub mod use_vector;

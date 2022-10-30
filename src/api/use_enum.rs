@@ -9,7 +9,10 @@ pub enum IpAddressType {
 
 // 枚举方法
 impl IpAddressType {
-    fn call(&self) {}
+    fn call(&self) {
+        // 解引用
+        *&self
+    }
 }
 
 struct IpAddress {

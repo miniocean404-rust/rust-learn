@@ -1,16 +1,17 @@
 // 泛型使用
 
-// pub fn use_genericity<T>(list: &[T]) -> T {
-//     let mut max = list[0];
+pub fn use_genericity<T: PartialOrd + Clone>(list: &[T]) -> &T {
+    let mut max = &list[0];
 
-//     for &item in list {
-//         if item > max {
-//             max = item;
-//         }
-//     }
+    for item in list {
+        // > 号 对应一个方法 std::cmp::PartialOrd 所有 只有list 实现了 PartialOrd trait 才能用大于号
+        if item > max {
+            max = item;
+        }
+    }
 
-//     max
-// }
+    max
+}
 
 struct Point<T, U> {
     x: T,

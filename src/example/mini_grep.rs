@@ -9,12 +9,13 @@ pub fn use_grep() {
 
     // |err| 闭包的参数
     let config = Config::new(&args).unwrap_or_else(|err| {
-        println!("解析参数有问题: {}", err);
+        eprintln!("解析参数有问题: {}", err);
         process::exit(0);
     });
     // println!("参数值：{:?}{:?}", config.query, config.filename);
 
     if let Err(e) = get_file_content(config) {
+        // 可使用命令 cargo run > log.txt 将 标准输入的东西输出到文件
         println!("运行错误 {}", e);
         process::exit(1);
     };

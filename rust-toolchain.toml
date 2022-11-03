@@ -2,7 +2,7 @@
 channel = "stable"
 components = ["rustfmt", "clippy"]
 # 可用平台使用 rustup target list 查看
-targets = ["wasm32-unknown-unknown"]
+# targets = ["wasm32-unknown-unknown"]
 # 工具链完整程度 minimal | default
 profile = "default"
 

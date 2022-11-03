@@ -1,27 +1,21 @@
+use crate::example::mini_grep_lib::get_file_content;
+use crate::example::mini_grep_lib::Config;
 use std::env;
-use std::fs;
+use std::process;
 
 pub fn use_grep() {
-    // ["target\\debug\\learn_base.exe", "1234"]
+    // env::args().collect() 获取的参数 ["target\\debug\\learn_base.exe", "1234"]
     let args: Vec<String> = env::args().collect();
-    let config = Config::new(&args);
-    println!("参数值：{:?}{:?}", config.query, config.filename);
 
-    let content = fs::read_to_string(config.filename).expect("读取文件错误");
-    println!("文件内容：\r\n{}", content)
-}
+    // |err| 闭包的参数
+    let config = Config::new(&args).unwrap_or_else(|err| {
+        println!("解析参数有问题: {}", err);
+        process::exit(0);
+    });
+    // println!("参数值：{:?}{:?}", config.query, config.filename);
 
-struct Config {
-    filename: String,
-    query: String,
-}
-
-impl Config {
-    // 解析命令行参数
-    fn new(args: &[String]) -> Config {
-        let query = args[1].clone();
-        let filename = args[2].clone();
-
-        Config { filename, query }
-    }
+    if let Err(e) = get_file_content(config) {
+        println!("运行错误 {}", e);
+        process::exit(1);
+    };
 }

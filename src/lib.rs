@@ -1,6 +1,5 @@
 pub mod api;
 pub mod example;
-pub mod utils;
 
 // 父模块无法使用子模块 非 pub 的模块
 // 子模块可以使用父模块的内容

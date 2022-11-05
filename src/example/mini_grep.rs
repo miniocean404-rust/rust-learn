@@ -5,10 +5,10 @@ use std::process;
 
 pub fn use_grep() {
     // env::args().collect() 获取的参数 ["target\\debug\\learn_base.exe", "1234"]
-    let args: Vec<String> = env::args().collect();
+    // let args: Vec<String> = env::args().collect();
 
     // |err| 闭包的参数
-    let config = Config::new(&args).unwrap_or_else(|err| {
+    let config = Config::new(env::args()).unwrap_or_else(|err| {
         eprintln!("解析参数有问题: {}", err);
         process::exit(0);
     });

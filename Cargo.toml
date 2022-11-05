@@ -2,10 +2,14 @@
 name = "learn_base"
 version = "0.1.0"
 edition = "2021"
+exclude = ["index.node"]
+description = "CPU Count"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+# Rust 编译 .node 模块给 Nodejs 调用: https://neon-bindings.com/
 # 开启可编译 wasm 的库，让 rs 支持 js 特性
 getrandom = { version = "0.2.8", features = ["js"] }
 rand = "0.8.5"

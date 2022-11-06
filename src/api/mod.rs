@@ -13,3 +13,4 @@
 // pub mod use_lift;
 // pub mod use_closure;
 // pub mod use_iterator;
+pub mod use_doc;

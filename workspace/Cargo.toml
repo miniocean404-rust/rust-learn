@@ -1,0 +1,11 @@
+# 工作空间
+# 命令 cargo new xx --lib
+# 执行工作空间的 main.ts cargo run -p xx
+# 依赖另一个工作空间的包：xx = { "../xx" }
+
+# 创建工作空间
+[workspace]
+members = [
+    "package",
+    "main"
+]

@@ -1,18 +1,31 @@
+# Cargo.toml 配置网址： https://doc.rust-lang.org/cargo/reference/manifest.html
 [package]
 name = "learn_base"
+description = "出现在搜索去的描述字段"
+license = "MIT OR Apache-2.0"
+keywords = ["learn", "base"]
 version = "0.1.0"
+author = "MiniOcean404"
 edition = "2021"
-exclude = ["index.node"]
-description = "CPU Count"
-license = "MIT"
+exclude = ["index.node"] # 发布时要排除的文件。
+include = ["/src", "COPYRIGHT", "/examples", "!/examples/big_example"] # 发布时要包含的文件。
+rust-version = "1.65.0" # 最小 Rust 版本
+# default-run = "main"\
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
 
+# 包库依赖项。
 [dependencies]
 # Rust 编译 .node 模块给 Nodejs 调用: https://neon-bindings.com/
 # 开启可编译 wasm 的库，让 rs 支持 js 特性
 getrandom = { version = "0.2.8", features = ["js"] }
 rand = "0.8.5"
+
+# 示例、测试和基准测试的依赖关系。
+[dev-dependencies]
+
+# 构建脚本的依赖项。
+[build-dependencies]
 
 # cargo watch -x "run"
 # cargo-watch = "8.1.2"

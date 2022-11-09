@@ -13,6 +13,7 @@ impl Drop for CustomSmartPoint {
 }
 
 fn use_drop() {
+    // 离开作用域删除智能指针的数据
     let a = CustomSmartPoint {
         data: String::from(""),
     };

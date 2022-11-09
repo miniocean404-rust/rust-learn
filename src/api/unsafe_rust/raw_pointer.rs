@@ -1,12 +1,15 @@
 // 不安全 Rust 有两个被称为 裸指针（raw pointers）的类似于引用的新类型。
 // 和引用一样，裸指针是不可变或可变的，分别写作 *const T 和 *mut T。
 // 这里的星号不是解引用运算符；它是类型名称的一部分。在裸指针的上下文中，不可变 意味着指针解引用之后不能直接赋值。
+// 不安全指针为了和 C 进行接口、构建借用检查器无法理解的安全抽象
 
 // 裸指针与引用和智能指针的区别在于
 //     允许忽略借用规则，可以同时拥有不可变和可变的指针，或多个指向相同位置的可变指针
 //     不保证指向有效的内存
 //     允许为空
 //     不能实现任何自动清理功能
+
+use core::slice;
 
 // 这里没有引入 unsafe 关键字。可以在安全代码中 创建 裸指针，只是不能在不安全块之外 解引用 裸指针，稍后便会看到。
 // as 将不可变和可变引用强转为对应的裸指针类型。
@@ -39,4 +42,30 @@ fn unsafe_fn() {
     unsafe {
         dangerous();
     }
+}
+
+fn split_at_mut(slice: &mut [i32], mid: usize) -> (&mut [i32], &mut [i32]) {
+    let len = slice.len();
+    let ptr = slice.as_mut_ptr();
+
+    assert!(mid <= len);
+
+    // 按理说这个函数可以切片这个变量的两个部分，但是 Rust 的安全特性不允许同一个变量使用两次，所以使用 unsafe 进行操作
+    // (&mut slice[..mid], &mut slice[mid..])
+
+    // from_raw_parts_mut 本身就是不安全函数
+    unsafe {
+        (
+            slice::from_raw_parts_mut(ptr, mid),
+            slice::from_raw_parts_mut(ptr.add(mid), len - mid),
+        )
+    }
+}
+
+fn painc_raw_pointer() {
+    let address = 0x01234usize;
+    let r = address as *mut i32;
+
+    // 因为获取的是一个地址，对一个位置的地址操作就很可能导致崩溃
+    let slice: &[i32] = unsafe { slice::from_raw_parts_mut(r, 10000) };
 }

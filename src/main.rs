@@ -7,7 +7,7 @@
 // 导入全部
 // use neon::prelude::*; 导入全部
 
-use learn_base::api::concurrency::use_thread;
+use learn_base::api::thread::use_thread;
 
 fn main() {
     use_thread();

@@ -20,18 +20,28 @@
 use std::ops::Deref;
 use List::{Cons, Nil};
 
+// 因为 enum 实际上只会使用其中的一个成员，所以Message 值所需的空间等于储存其最大成员的空间大小
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+
+// Cons 构造函数的缩写
+// Nil 代表无效或缺失的值且没有下一项
 enum List {
     Cons(i32, Box<List>),
     Nil,
 }
 
 fn box_T() {
-    // 基本使用
+    // 将栈的数据存储到堆中，离开作用域后释放作用于 box 本身（位于栈上）和它所指向的数据（位于堆上）。
     let num = Box::new(5);
     println!("{}", num);
 
     // 常用场景1的示例 递归类型
-    let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
+    let list: List = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
 }
 
 // 实现 Deref Trait 使我们可以自定义解引用运算符 * 的行为

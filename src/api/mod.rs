@@ -16,3 +16,4 @@ pub mod publish;
 // pub mod schema_match;
 // pub mod smart_pointer;
 // pub mod thread;
+pub mod unsafe_rust;

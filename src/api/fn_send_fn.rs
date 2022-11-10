@@ -12,6 +12,7 @@ fn do_twice(f: fn(i32) -> i32, arg: i32) -> i32 {
 }
 
 // 可以同时传递函数和闭包
+// 接收的参数是函数指针
 pub fn use_send_fn() {
     let answer = do_twice(add_one, 5);
 

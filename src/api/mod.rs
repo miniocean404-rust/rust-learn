@@ -16,6 +16,7 @@ pub mod publish;
 // pub mod smart_pointer;
 // pub mod thread;
 pub mod advanced_trait;
+pub mod advanced_type;
 pub mod fn_send_fn;
 pub mod macro_feature;
 pub mod unsafe_rust;

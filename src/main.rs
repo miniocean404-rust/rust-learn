@@ -7,4 +7,8 @@
 // 导入全部
 // use neon::prelude::*; 导入全部
 
-fn main() {}
+use learn_base::example::server::single_server::use_single_server;
+
+fn main() {
+    use_single_server()
+}

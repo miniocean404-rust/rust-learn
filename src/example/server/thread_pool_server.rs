@@ -5,8 +5,11 @@ use std::{
     path::PathBuf,
 };
 
-pub fn use_single_server() {
+use crate::example::server::thread_poll::ThreadPool;
+
+pub fn use_thread_poll_server() {
     let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
+    let pool = ThreadPool::new(4);
 
     println!("链接建立在 http://127.0.0.1:7878");
 
@@ -16,6 +19,15 @@ pub fn use_single_server() {
     }
 }
 
+// http 请求体
+// Method Request-URI HTTP-Version CRLF
+// headers CRLF
+// message-body
+
+// http 响应体
+// HTTP-Version Status-Code Reason-Phrase CRLF
+// headers CRLF
+// message-body
 fn handle_connection(mut stream: TcpStream) {
     let mut buffer = [0; 1024];
 
@@ -47,16 +59,6 @@ fn handle_connection(mut stream: TcpStream) {
         contents.len(),
         contents
     );
-
-    // 请求体
-    // Method Request-URI HTTP-Version CRLF
-    // headers CRLF
-    // message-body
-
-    // 响应体
-    // HTTP-Version Status-Code Reason-Phrase CRLF
-    // headers CRLF
-    // message-body
 
     stream.write_all(response.as_bytes()).unwrap();
 

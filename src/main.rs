@@ -7,8 +7,8 @@
 // 导入全部
 // use neon::prelude::*; 导入全部
 
-use learn_base::example::server;
+use learn_base::example::get_ip::ip_v4_address;
 
 fn main() {
-    server::thread_pool_server::use_thread_poll_server();
+    ip_v4_address()
 }

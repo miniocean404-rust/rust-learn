@@ -8,6 +8,8 @@ use std::{
 pub fn use_single_server() {
     let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
 
+    listener.local_addr();
+
     println!("链接建立在 http://127.0.0.1:7878");
 
     for stream in listener.incoming() {

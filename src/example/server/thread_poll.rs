@@ -47,10 +47,10 @@ type Receive = Arc<Mutex<Receiver<Job>>>;
 
 impl Work {
     fn new(id: usize, rece: Receive) -> Work {
-        let thread = thread::spawn(move || loop {
-            let job: Job = rece.lock().unwrap().recv().unwrap();
-
-            job();
+        let thread = thread::spawn(move || {
+            while let Ok(job) = rece.lock().unwrap().recv() {
+                job();
+            }
         });
 
         Work { id, thread }

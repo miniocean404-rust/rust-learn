@@ -7,8 +7,4 @@
 // 导入全部
 // use neon::prelude::*; 导入全部
 
-use learn_base::example::get_ip::ip_v4_address;
-
-fn main() {
-    ip_v4_address()
-}
+fn main() {}

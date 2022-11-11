@@ -8,7 +8,7 @@
 // pub mod genericity;
 // pub mod hash_map;
 // pub mod iterator;
-// pub mod lift;
+// pub mod life;
 // pub mod option;
 // pub mod string;
 pub mod publish;

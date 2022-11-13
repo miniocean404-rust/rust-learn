@@ -1,0 +1,11 @@
+{
+  "name": "rust-learn",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:rust-all-project/rust-learn.git",
+  "author": "MiniOcean404 <1037306928@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "cargo watch -x run"
+  }
+}

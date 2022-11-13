@@ -20,3 +20,4 @@ pub mod publish;
 // pub mod fn_send_fn;
 // pub mod macro_feature;
 // pub mod unsafe_rust;
+pub mod _async;

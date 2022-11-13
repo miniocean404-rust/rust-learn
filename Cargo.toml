@@ -20,6 +20,7 @@ rust-version = "1.65.0" # 最小 Rust 版本
 # 开启可编译 wasm 的库，让 rs 支持 js 特性
 getrandom = { version = "0.2.8", features = ["js"] }
 rand = "0.8.5"
+tokio = { version = "1.21.2", features = ["full"] }
 
 # 示例、测试和基准测试的依赖关系。
 [dev-dependencies]

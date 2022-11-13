@@ -1,6 +1,7 @@
 use std::{
     future::Future,
     pin::Pin,
+    sync::Arc,
     task::{Context, Poll},
     thread::{self, sleep},
     time::{Duration, Instant},
@@ -38,6 +39,7 @@ impl Future for ReadFile {
 
                 sleep(dutation);
 
+                // self.is_finish = true;
                 // waker().wake() 通知 tokio 异步执行器，任务已经准备好了
                 waker.wake();
             });

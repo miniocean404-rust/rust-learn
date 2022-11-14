@@ -10,5 +10,5 @@
 use learn_base::api::_async::fulfill_future::fulfill_future;
 
 fn main() {
-    fulfill_future()
+    fulfill_future();
 }

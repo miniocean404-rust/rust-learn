@@ -10,7 +10,7 @@ edition = "2021"
 exclude = ["index.node"] # 发布时要排除的文件。
 include = ["/src", "COPYRIGHT", "/examples", "!/examples/big_example"] # 发布时要包含的文件。
 rust-version = "1.65.0" # 最小 Rust 版本
-# default-run = "main" # 在指定 bin 时候指定 cargo run [workspace] --bin [bin 下文件] 这个指令中  --bin [bin 下文件] 的默认执行
+# default-run = "main" # 在指定 bin 时候指定 cargo run --package [workspace] --bin [bin 下文件] 这个指令中  --bin [bin 下文件] 的默认执行
 
 [lib]
 

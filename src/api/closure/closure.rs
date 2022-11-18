@@ -1,5 +1,24 @@
+// https://zhuanlan.zhihu.com/p/341815515
+
 use std::{collections::HashMap, thread, time::Duration};
 
+// 捕获值的方式
+// 1. 取得所有权 FnOnce 所有的闭包都实现了 FnOnce 这个 Trait ,闭包只能使用 self、&mut self、&self 的值
+//      所有的闭包都实现了FnOnce。
+//      如果闭包的方法移出了所捕获的变量的所有权，则只会实现FnOnce。
+// 2. 可变借用 FnMut 没有移动捕获变量的实现了FnMut , 闭包只能使用 &mut self、&self 的值
+//      如果闭包的方法没有移出所捕获的变量的所有权，并且对变量进行了修改，即通过可变借用使用所捕获的变量，则会实现FnMut
+// 3. 不可变借用 Fn 无需可变访问捕获变量的闭包实现了 Fn 闭包只能使用 &self 的值
+//      如果闭包的方法没有移出所捕获的变量的所有权，并且没有对变量进行修改，即通过不可变借用使用所捕获的变量，则会实现Fn
+
+// 捕获模式
+// 1. 当闭包借用环境中的变量时，引用变量&T（或&mut T）将保存在闭包匿名结构体中。此时若想获取所引用的变量的所有权，
+//    就要使用move关键字将其所有权转移至闭包中，闭包会捕获所引用的变量本身T（或mut T），也就是下面所要说的情况。
+// 2. 当闭包移动环境中的变量时，闭包会根据其语义进行Move或Copy。捕获的变量T（或mut T）将保存在闭包匿名结构体中。
+// 简单地来说，如果闭包捕获的变量为引用&T(或&mut T），使用关键字move后，闭包会根据所引用的对象的语义（Copy或Move）捕获T(或mut T)
+
+// 实现FnOnce、FnMut和Fn中的哪个trait只与闭包如何使用所捕获的变量有关，与如何捕获变量无关
+// 关键字move影响的是闭包如何捕获变量，因此，对闭包实现FnOnce、FnMut和Fn没有任何影响
 pub fn use_exec_closure() {
     let x = 32;
 
@@ -12,10 +31,6 @@ pub fn use_exec_closure() {
         // 睡眠 2 秒
         thread::sleep(Duration::from_secs(2));
 
-        // 捕获值的方式
-        // 1. 取得所有权 FnOnce 所有的闭包都实现了 FnOnce 这个 Trait ,闭包只能使用 self、&mut self、&self 的值
-        // 2. 可变借用 FnMut 没有移动捕获变量的实现了FnMut , 闭包只能使用 &mut self、&self 的值
-        // 3. 不可变借用 Fn 无需可变访问捕获变量的闭包实现了 Fn 闭包只能使用 &self 的值
         println!(
             "闭包可以捕获外部的参数（但是会有额外的内存开销），函数不可以{}",
             x

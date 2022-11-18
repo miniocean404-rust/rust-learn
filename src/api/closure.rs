@@ -13,9 +13,9 @@ pub fn use_exec_closure() {
         thread::sleep(Duration::from_secs(2));
 
         // 捕获值的方式
-        // 1. 取得所有权 FnOnce 所有的闭包都实现了 FnOnce 这个 Trait
-        // 2. 可变借用 FnMut 没有移动捕获变量的实现了FnMut
-        // 3. 不可变借用 Fn 无需可变访问捕获变量的闭包实现了 Fn
+        // 1. 取得所有权 FnOnce 所有的闭包都实现了 FnOnce 这个 Trait ,闭包只能使用 self、&mut self、&self 的值
+        // 2. 可变借用 FnMut 没有移动捕获变量的实现了FnMut , 闭包只能使用 &mut self、&self 的值
+        // 3. 不可变借用 Fn 无需可变访问捕获变量的闭包实现了 Fn 闭包只能使用 &self 的值
         println!(
             "闭包可以捕获外部的参数（但是会有额外的内存开销），函数不可以{}",
             x

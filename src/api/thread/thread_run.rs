@@ -21,7 +21,7 @@ fn await_thread() {
 // 闭包获取所有权
 fn move_thread() {
     let v = vec![1, 2, 3];
-    // move 获取闭包使用外部变量的所有权
+    // move 将所引用的变量的所有权转移至闭包内，通常用于使闭包的生命周期大于所捕获的变量的原生命周期（例如将闭包返回或移至其他线程）
     // 闭包获取所有权后主线程无法使用这个变量，因为没有了所有权
     let handle = thread::spawn(move || println!("我是一个 vec {:?}", v));
 

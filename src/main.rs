@@ -7,8 +7,4 @@
 // 导入全部
 // use neon::prelude::*; 导入全部
 
-use learn_base::api::_async::fulfill_future::fulfill_future;
-
-fn main() {
-    fulfill_future()
-}
+fn main() {}

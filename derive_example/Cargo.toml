@@ -1,0 +1,15 @@
+# 工作空间
+# 命令 cargo new xx --lib
+# 执行工作空间的 main.rs cargo run -p xx
+# 依赖另一个工作空间的包：xx = { "../xx" }
+
+[package]
+name = "derive_example"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "main"
+path = "./main.rs"

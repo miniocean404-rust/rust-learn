@@ -1,6 +1,6 @@
 # Cargo.toml 配置网址： https://doc.rust-lang.org/cargo/reference/manifest.html
 [package]
-name = "learn_base"
+name = "syntax"
 description = "出现在搜索去的描述字段"
 license = "MIT OR Apache-2.0"
 keywords = ["learn", "base"]
@@ -13,7 +13,10 @@ rust-version = "1.65.0" # 最小 Rust 版本
 
 # default-run = "main" # 在指定 bin 时候指定 cargo run --package [workspace] --bin [bin 下文件] 这个指令中  --bin [bin 下文件] 的默认执行
 
-[lib]
+# [lib]
+[[bin]]
+name = "learn"
+path = "./main.rs"
 
 # 包库依赖项。
 [dependencies]

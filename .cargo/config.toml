@@ -1,0 +1,61 @@
+# 1. rustup target list：展示所有支持的 target 和已经安装的 target，如果已安装会在后面显示(installed)
+# 1. rustup target list --installed：查看已安装的 target
+# 2. rustup show：展示所有已安装
+# 4. rustup target add x86_64-unknown-linux-musl # 安装
+# 5. rustup target remove x86_64-unknown-linux-musl # 删除
+# 6. cargo build --release --target=x86_64-unknown-linux-musl # 命令行构建
+
+# gnu 编译出的程序，依赖系统安装的 glibc 版本
+# musl 编译出的程序是完全静态的，也就是不依赖系统的 lib，兼容性更好，但编译出的文件会略大
+
+# rust-lld 是一个用于链接 Rust 程序的链接器。它是一个用于链接二进制文件的工具，主要用于将一个或多个目标文件和库文件链接在一起，生成可执行文件或共享库。
+# 在进行交叉编译时，需要使用目标平台对应的编译器和链接器来编译和链接 Rust 程序。rust-lld 就是其中之一。
+# 因此，在进行交叉编译时，可以使用 rust-lld 作为链接器。但是，也可以使用其他链接器，比如 GNU 链接器 (ld) 或 Microsoft 链接器 (link.exe)
+
+# 设置执行任务别名
+[alias]
+lint = "clippy --workspace --all-targets -- --deny warnings"
+dev = "run development"
+test = "run testing"
+prod = "run production"
+c = "clean" # 清理缓存
+
+[term]
+verbose = false        # Cargo否提供详细输出
+color = 'auto'         # Cargo否着色输出
+progress.when = 'auto' # Cargo 是否显示进度条
+progress.width = 80    # 进度条的宽度
+quiet = false          # cargo 输出是否安静
+
+
+
+[build]
+jobs = 1 # 并行作业数，默认为CPU数
+target-dir = "target"     # 打包生成的位置
+incremental = true        # 是否启用增量编译
+rustc = "rustc"           # rust编译器工具
+rustdoc = "rustdoc"       # doc生成器工具
+# 编译的目标平台
+# target = [
+    #    "x86_64-apple-darwin",
+   #    "x86_64-unknown-linux-musl",
+   #    "x86_64-unknown-linux-gnu"
+# ]
+
+[http]
+# proxy = "host:port" # 用于HTTP请求的HTTP代理（默认为none） libcurl格式，例如“socks5h://host:port”
+#timeout = 30        # 每个HTTP请求的超时，以秒为单位
+# cainfo = "cert.pem" # 证书颁发机构（CA）包的路径（可选）
+#check-revoke = true # 指示是否检查SSL证书是否已废除
+#low-speed-limit = 5 # 限速 字节/秒（10 = 默认值，0 = 禁用）
+#multiplexing = true # 是否在可能的情况下使用 HTTP/2多路复用
+
+# 此设置可用于帮助调试Cargo所发生的HTTP请求
+# 当设置为“true”时，将填充Cargo的正常调试日志记录
+# 关于HTTP的信息，您可以使用
+# `RUST_LOG=cargo::ops::registry=debug`提取（和`trace`可能会打印更多）。
+#
+# 在将这些日志发布到其他地方时要小心，因可能存在这样的
+# header中，有一个你不想泄露的身份验证令牌的情况！务必
+# 在发布之前简要查看日志。
+#debug = false

@@ -9,8 +9,6 @@
 // pub mod hash_map;
 // pub mod iterator;
 // pub mod life;
-// pub mod option;
-// pub mod string;
 pub mod publish;
 // pub mod schema_match;
 // pub mod smart_pointer;

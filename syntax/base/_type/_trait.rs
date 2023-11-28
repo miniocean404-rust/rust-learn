@@ -1,4 +1,4 @@
-use std::{default, fmt::Display, string};
+use std::fmt::Display;
 
 pub trait UseTrait {
     fn trait_test(&self) -> String;
@@ -55,7 +55,9 @@ where
 
 // impl 表示返回类型时候 里面不能有 用 if 判断的返回多种 trait 实现的类型
 pub fn notify5() -> impl UseTrait {
-    Articel { title: todo!() }
+    Articel {
+        title: String::from(""),
+    }
 }
 
 // 需要引入 UseTrait

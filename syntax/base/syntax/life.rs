@@ -23,7 +23,7 @@ fn use_lift_position() {
 // 下面例子代表 x,y 的生命周期中 短的那个是 泛型的生命周期
 // 从参数参会引用时，返回类型生命周期必须和参数的生命周期一致
 fn use_lift_label<'a>(x: &'a str, y: &'a str) -> &'a str {
-    if (x.len() > y.len()) {
+    if x.len() > y.len() {
         x
     } else {
         y

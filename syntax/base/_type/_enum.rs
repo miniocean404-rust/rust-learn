@@ -1,6 +1,6 @@
 #[derive(Debug)]
 pub enum IpAddressType {
-    v4(u8, u8, u8, u8),
+    V4(u8, u8, u8, u8),
     V6(String),
     VTest(i32, i32),
     VTest2 { width: i8 },
@@ -11,7 +11,7 @@ pub enum IpAddressType {
 impl IpAddressType {
     fn call(&self) {
         // 解引用
-        *&self
+        // *&self
     }
 }
 
@@ -23,7 +23,7 @@ struct IpAddress {
 fn get_ip() {
     let ip = IpAddress {
         address: String::from("127.0.0.1"),
-        kind: IpAddressType::v4(128, 0, 0, 0),
+        kind: IpAddressType::V4(128, 0, 0, 0),
     };
 
     let v_test = IpAddressType::VTest(12, 12);

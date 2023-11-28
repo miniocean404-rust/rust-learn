@@ -1,4 +1,5 @@
 pub mod api;
+pub mod base;
 pub mod example;
 
 // pub use 导出使得用户调用更方便的导出

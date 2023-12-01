@@ -1,3 +1,69 @@
+#![allow(warnings)]
+
+// 1. 范围匹配
+pub fn range_match() {
+    let x = 5;
+    let y = 'c';
+
+    match x {
+        1..=6 => println!("1-5"),
+        _ => println!("其他"),
+    }
+
+    match y {
+        'a'..='j' => println!("字母"),
+        _ => println!("其他"),
+    }
+}
+
+// match 分支模式之后的额外 if 条件
+pub fn match_guard() {
+    let num = Some(4);
+    let x = 4;
+    let y = false;
+
+    match num {
+        Some(x) if x < 5 => println!("less than five: {}", x),
+        Some(x) => println!("{}", x),
+        None => (),
+    }
+
+    match x {
+        4 | 5 | 6 if y => println!("yes"),
+        _ => println!("no"),
+    }
+}
+
+pub fn ignore_other_val() {
+    struct Point {
+        x: i32,
+        y: i32,
+        z: i32,
+    }
+
+    let origin = Point { x: 0, y: 0, z: 0 };
+
+    match origin {
+        Point { x, .. } => println!("x is {}", x),
+    }
+}
+
+pub fn ignore_some_val() {
+    let numbers = (2, 4, 8, 16, 32);
+
+    match numbers {
+        (first, _, third, _, fifth) => {
+            println!("Some numbers: {}, {}, {}", first, third, fifth)
+        }
+        (first, .., fifth) => {
+            println!("Some numbers: {},  {}", first, fifth)
+        }
+        (.., second) => {
+            println!("Some numbers: {}", second)
+        }
+    };
+}
+
 #[derive(Debug)]
 enum Mode2 {
     V1,
@@ -24,29 +90,13 @@ fn show_match(mode: Mode) -> u8 {
     }
 }
 
-fn use_show_match() {
+pub fn use_show_match() {
     let enum_value = Mode::Match(Mode2::V1);
-    let value: u8 = show_match(enum_value);
+    show_match(enum_value);
 }
 
-// 范围匹配
-fn range_match() {
-    let x = 5;
-    let y = 'c';
-
-    match x {
-        1..=6 => println!("1-5"),
-        _ => println!("其他"),
-    }
-
-    match y {
-        'a'..='j' => println!("字母"),
-        _ => println!("其他"),
-    }
-}
-
-// 结构体解构匹配
-fn struct_match() {
+// 2. 结构体解构匹配
+pub fn struct_match() {
     struct Point {
         x: i32,
         y: i32,
@@ -62,7 +112,7 @@ fn struct_match() {
 }
 
 // 枚举解构匹配
-fn enum_match() {
+pub fn enum_match() {
     enum Message {
         Quit,
         Move { x: i32, y: i32 },
@@ -86,7 +136,8 @@ fn enum_match() {
     }
 }
 
-fn deconstruct_struct_enum_match() {
+// 解构枚举匹配
+pub fn deconstruct_struct_enum_match() {
     enum Color {
         Rgb(i32, i32, i32),
         Hsv(i32, i32, i32),

@@ -1,62 +1,20 @@
-// 解构 结构体 和 元祖
-fn deconstruct_stuct_tmple() {
-    // let ((feet, inches), Point { x, y }) = ((3, 10), Point { x: 3, y: -10 });
-}
+// #![allow(warnings)]
 
-fn ignore_no_use_var() {
+pub fn ignore_no_use_var() {
     let _x = 5;
-    let y = 10;
 }
 
-fn ignore_some_val() {
-    let numbers = (2, 4, 8, 16, 32);
-
-    match numbers {
-        (first, _, third, _, fifth) => {
-            println!("Some numbers: {}, {}, {}", first, third, fifth)
-        }
-        (first, .., fifth) => {
-            println!("Some numbers: {},  {}", first, fifth)
-        }
-        (.., second) => {
-            println!("Some numbers: {}", second)
-        }
-    };
+struct Point {
+    x: i32,
+    y: i32,
 }
 
-fn ignore_other_val() {
-    struct Point {
-        x: i32,
-        y: i32,
-        z: i32,
-    }
-
-    let origin = Point { x: 0, y: 0, z: 0 };
-
-    match origin {
-        Point { x, .. } => println!("x is {}", x),
-    }
+// 解构 结构体 和 元祖
+pub fn deconstruct_stuct_tmple() {
+    let ((_feet, _inches), Point { x: _, y: _ }) = ((3, 10), Point { x: 3, y: -10 });
 }
 
-// match 分支模式之后的额外 if 条件
-fn match_guard() {
-    let num = Some(4);
-    let x = 4;
-    let y = false;
-
-    match num {
-        Some(x) if x < 5 => println!("less than five: {}", x),
-        Some(x) => println!("{}", x),
-        None => (),
-    }
-
-    match x {
-        4 | 5 | 6 if y => println!("yes"),
-        _ => println!("no"),
-    }
-}
-
-fn use_bind() {
+pub fn use_bind() {
     enum Message {
         Hello { id: i32 },
     }

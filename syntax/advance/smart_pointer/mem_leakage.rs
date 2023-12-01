@@ -79,7 +79,7 @@ struct Node {
     parent: RefCell<Weak<Node>>,
 }
 
-fn avoid_cycle_pointer() {
+pub fn avoid_cycle_pointer() {
     let leaf = Rc::new(Node {
         value: 3,
         children: RefCell::new(vec![]),

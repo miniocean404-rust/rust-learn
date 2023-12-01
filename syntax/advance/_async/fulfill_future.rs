@@ -1,7 +1,6 @@
 use std::{
     future::Future,
     pin::Pin,
-    sync::Arc,
     task::{Context, Poll},
     thread::{self, sleep},
     time::{Duration, Instant},
@@ -27,8 +26,8 @@ impl Future for ReadFile {
     // poll (轮询)
 
     // Pin 代表被单独放到内存的某个空间方便异步任务执行完后，从队列中回归正常队列时可以拿到这个结构体
-    fn poll(mut self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output> {
-        let waker = cx.waker().clone();
+    fn poll(mut self: Pin<&mut Self>, ctx: &mut Context<'_>) -> Poll<Self::Output> {
+        let waker = ctx.waker().clone();
 
         println!("finish 1 {}", self.is_finish);
 

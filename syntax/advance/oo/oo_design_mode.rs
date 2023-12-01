@@ -5,14 +5,6 @@ pub struct Post {
     content: String,
 }
 
-pub struct DraftPost {
-    content: String,
-}
-
-pub struct PendingReviewPost {
-    content: String,
-}
-
 impl Post {
     pub fn create_draft() -> DraftPost {
         DraftPost {
@@ -23,6 +15,10 @@ impl Post {
     pub fn content(&self) -> &str {
         &self.content
     }
+}
+
+pub struct DraftPost {
+    content: String,
 }
 
 impl DraftPost {
@@ -36,6 +32,10 @@ impl DraftPost {
             content: self.content,
         }
     }
+}
+
+pub struct PendingReviewPost {
+    content: String,
 }
 
 impl PendingReviewPost {

@@ -30,7 +30,7 @@ quiet = false          # cargo 输出是否安静
 
 
 [build]
-jobs = 1 # 并行作业数，默认为CPU数
+# jobs = 1 # 并行作业数，默认为CPU数
 target-dir = "target"     # 打包生成的位置
 incremental = true        # 是否启用增量编译
 rustc = "rustc"           # rust编译器工具

@@ -1,3 +1,4 @@
+```rust
 //! # 我的包
 //! 我的包的描述
 
@@ -21,3 +22,4 @@
 /// let res = learn_base::use_doc();
 /// ```
 pub fn use_doc() {}
+```

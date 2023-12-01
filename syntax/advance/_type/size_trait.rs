@@ -15,9 +15,10 @@
 // 也就是说，我们总是知道 &str 的大小，而无论其引用的字符串是多长。
 // 这里是 Rust 中动态大小类型的常规用法：他们有一些额外的元信息来储存动态信息的大小。
 // 这引出了动态大小类型的黄金规则：必须将动态大小类型的值置于某种指针之后。
+#[allow(unused_must_use)]
 pub fn use_size_trait() {
-    let s1: str = "Hello there!";
-    let s2: str = "How's it going?";
+    let s1: &str = "Hello there!";
+    let s2: &str = "How's it going?";
 
     // 可以将 str 与所有类型的指针结合：
     //      比如 Box<str> 或 Rc<str>。

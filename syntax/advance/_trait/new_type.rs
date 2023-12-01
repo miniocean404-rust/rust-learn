@@ -15,7 +15,7 @@ use std::fmt;
 struct Wrapper(Vec<String>);
 
 // 间接实现
-// 无法直接在 vec 上实现 Display ， 因为 孤儿规则阻止我们直接这么做 ( Display trait 和 Vec<T> 都定义于我们的 crate 之外 )
+// 无法直接在 vec 上实现 Display ， 因为 孤儿规则 阻止我们直接这么做 ( Display trait 和 Vec<T> 都定义于我们的 crate 之外 )
 // 可以在 包含 Vec<T> 实例的结构体中间接实现 fmt::Display 这个trait
 impl fmt::Display for Wrapper {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

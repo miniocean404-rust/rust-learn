@@ -3,11 +3,11 @@
 // 这一点可以通过 Rc<T> 和 RefCell<T> 看出：创建引用循环的可能性是存在的。
 // 这会造成内存泄漏，因为每一项的引用计数永远也到不了 0，其值也永远不会被丢弃。
 
+use self::List::{Cons, Nil};
 use std::{
     cell::RefCell,
     rc::{Rc, Weak},
 };
-use List::{Cons, Nil};
 
 #[derive(Debug)]
 enum List {

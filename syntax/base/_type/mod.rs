@@ -7,3 +7,4 @@ pub mod _vector;
 pub mod err;
 pub mod genericity;
 pub mod hash_map;
+pub mod type_alise;

@@ -39,6 +39,9 @@ cargo clippy
 根目录下创建 examples 文件夹，然后在 examples 文件夹下创建文件，执行命令
 ```shell
 cargo run --exmaple fileName.rs
+
+# 执行 workspace 下的 examples 文件
+cargo run -p workspaceName  --example query
 ```
 
 # 语法

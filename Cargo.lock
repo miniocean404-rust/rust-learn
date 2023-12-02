@@ -166,7 +166,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "derive-example"
+name = "derive_example"
 version = "0.1.0"
 dependencies = [
  "anyhow",

@@ -4,7 +4,7 @@
 // 导入全部
 // use neon::prelude::*; 导入全部
 
-use root_lib::advance::schema_match::other::use_bind;
+use root::advance::schema_match::other::use_bind;
 
 fn main() {
     use_bind()

@@ -1,6 +1,6 @@
 # Cargo.toml 配置网址： https://doc.rust-lang.org/cargo/reference/manifest.html
 [package]
-name = "syntax"
+name = "syntax_example"
 description = "搜索后展示的描述字段"
 license = "MIT OR Apache-2.0"
 keywords = ["rust", "learn"]
@@ -18,7 +18,7 @@ name = "main"
 path = "./src/main.rs"
 
 [lib]
-name = "root_lib"
+name = "root"
 path = "./src/lib.rs"        # The source file of the target.
 # test = true            # 是否测试
 # doctest = true         # 测试文档示例

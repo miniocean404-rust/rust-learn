@@ -24,11 +24,12 @@ pub fn use_bind() {
     // match 匹配范围时，绑定值到 新的变量里
     match msg {
         Message::Hello {
+            // @ 的含义: 将 id 的值绑定到 id_variable 中
             id: id_variable @ 3..=7,
-        } => println!("Found an id in range: {}", id_variable),
+        } => println!("发现 id 范围: {}", id_variable),
 
         Message::Hello { id: 10..=12 } => {
-            println!("Found an id in another range")
+            println!("在另一个范围内找到id")
         }
 
         Message::Hello { id } => println!("Found some other id: {}", id),

@@ -13,6 +13,10 @@ rust-version = "1.65.0" # 最小 Rust 版本
 
 # default-run = "main" # 在指定 bin 时候指定 cargo run --package [workspace] --bin [bin 下文件] 这个指令中  --bin [bin 下文件] 的默认执行
 
+# 二进制目标
+[[bin]]
+name = "main"
+path = "./main.rs"
 
 [lib]
 name = "root"

@@ -12,8 +12,7 @@ cargo run --bin main
 ```
 
 ## 工作空间
-1. workspace 不同时拥有 bin 和 lib
-2. workspace 根 cargo.toml 下不能设置 bin 启动项
+1. workspace 根 cargo.toml 下不能设置 bin、package 启动项
 ```shell
 # 创建工作空间
 cargo new xx --lib|bin
@@ -36,7 +35,8 @@ cargo clippy
 ```
 
 ## 执行 examples 文件
-根目录下创建 examples 文件夹，然后在 examples 文件夹下创建文件，执行命令
+1. 根目录下创建 examples 文件夹，然后在 examples 文件夹下创建文件，执行命令
+2. workspace 根目录下创建 examples 没有意义
 ```shell
 cargo run --exmaple fileName.rs
 

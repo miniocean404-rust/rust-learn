@@ -12,9 +12,11 @@ cargo run --bin main
 ```
 
 ## 工作空间
+1. workspace 不同时拥有 bin 和 lib
+2. workspace 根 cargo.toml 下不能设置 bin 启动项
 ```shell
 # 创建工作空间
-cargo new xx --lib
+cargo new xx --lib|bin
 # 执行工作空间的 main.rs 
 # 在指定 bin 时候指定 cargo run --package workspaceName --bin [bin 下文件] 这个指令中  --bin [bin 下文件] 的默认执行
 cargo run -p workspaceName

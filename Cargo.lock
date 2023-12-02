@@ -277,6 +277,9 @@ dependencies = [
 [[package]]
 name = "run"
 version = "0.1.0"
+dependencies = [
+ "syntax_example",
+]
 
 [[package]]
 name = "rust-learn"

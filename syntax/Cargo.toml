@@ -17,9 +17,9 @@ rust-version = "1.65.0" # 最小 Rust 版本
 name = "main"
 path = "./src/main.rs"
 
-[lib]
-name = "root"
-path = "./src/lib.rs"        # The source file of the target.
+# [lib]
+# name = "root"
+# path = "./src/lib.rs"        # The source file of the target.
 # test = true            # 是否测试
 # doctest = true         # 测试文档示例
 # bench = true           # 基准测试

@@ -14,12 +14,13 @@ default-run = "main"
 
 [[bin]]
 name = "main"
-path = "syntax/src/main.rs"
+path = "run/src/main.rs"
 
 [workspace]
 members = [
     "derive_example",
-    "syntax_example",
+    "syntax",
+    "run"
 ]
 
 # [dependencies]

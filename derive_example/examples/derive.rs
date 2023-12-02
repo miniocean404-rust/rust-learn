@@ -1,4 +1,4 @@
-use process_derive::YourTrait;
+use derive_example::YourTrait;
 
 // 运行 cargo run --example derive
 #[derive(YourTrait)]

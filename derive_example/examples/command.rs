@@ -1,4 +1,4 @@
-use process_derive::Builder;
+use derive_example::Builder;
 
 // 运行 cargo run --example command
 #[allow(dead_code)]

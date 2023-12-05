@@ -4,6 +4,7 @@ members = [
     "run",
     "derive_example",
     "syntax",
+    # "xx/*"
 ]
 
 [workspace.package]

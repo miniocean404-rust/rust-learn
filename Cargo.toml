@@ -8,7 +8,6 @@ members = [
 ]
 
 [workspace.package]
-name = "rust_learn"
 description = "搜索后展示的描述字段"
 license = "MIT OR Apache-2.0"
 keywords = ["rust", "learn"]

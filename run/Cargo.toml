@@ -12,3 +12,4 @@ path = "./src/main.rs"
 
 [dependencies]
 syntax_example = { path = "../syntax" }
+derive_example = { path = "../derive_example", features=["my_feature"] }

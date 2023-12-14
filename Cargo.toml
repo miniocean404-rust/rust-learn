@@ -5,7 +5,22 @@ members = [
     "derive_example",
     "derive_declaration_example",
     "syntax",
+    # "xx/*"
 ]
+
+[workspace.package]
+description = "搜索后展示的描述字段"
+license = "MIT OR Apache-2.0"
+keywords = ["rust", "learn"]
+version = "0.1.0"
+author = "MiniOcean404"
+edition = "2021"
+exclude = ["index.node"] # 发布时要排除的文件。
+include = ["/src", "COPYRIGHT", "/examples", "!/examples/big_example"] # 发布时要包含的文件。
+rust-version = "1.65.0" # 最小 Rust 版本
+
+[workspace.dependencies]
+
 
 # cargo watch -x "run"
 # cargo-watch = "8.1.2"

@@ -3,6 +3,7 @@
 members = [
     "run",
     "derive_example",
+    "derive_declaration_example",
     "syntax",
 ]
 

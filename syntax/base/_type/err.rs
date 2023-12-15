@@ -56,6 +56,7 @@ impl Display for ReadUsernameError {
     }
 }
 
+// 将 io::Error 转化为 ReadUsernameError 错误
 impl From<io::Error> for ReadUsernameError {
     fn from(err: io::Error) -> ReadUsernameError {
         ReadUsernameError::IoError(err)

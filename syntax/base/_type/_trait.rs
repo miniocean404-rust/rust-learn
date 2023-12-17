@@ -76,6 +76,7 @@ pub struct Pair<T> {
     pub y: T,
 }
 
+// 为结构体中 T 泛型实现方法
 impl<T> Pair<T> {
     fn new(x: T, y: T) -> Self {
         Self { x, y }

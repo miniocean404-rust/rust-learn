@@ -1,0 +1,23 @@
+[package]
+name = "crate-lib"
+description.workspace = true
+license.workspace = true
+keywords.workspace = true
+version.workspace = true
+author.workspace = true
+edition.workspace = true
+exclude.workspace = true
+include.workspace = true
+rust-version.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# 处理时间
+chrono = "0.4.31"
+
+# 处理日志
+log = "0.4.20"
+env_logger = "0.10.0"
+log4rs = { version = "1.2.0", features = ["fixed_window_roller"] }
+# pretty_env_logger = "0.5.0"

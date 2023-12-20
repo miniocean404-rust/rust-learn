@@ -5,6 +5,7 @@ members = [
     "derive_example",
     "derive_declaration_example",
     "syntax",
+    "crate-lib"
     # "xx/*"
 ]
 

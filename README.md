@@ -1,5 +1,11 @@
 # 命令
 
+## 添加依赖
+```
+cargo add tokio --features full
+```
+
+
 ## 打包
 
 ```shell

@@ -9,6 +9,8 @@ pub struct Rect {
 }
 
 impl Rect {
+    // let Rect { width } = rect 解构
+
     fn get_area(&self) -> i8 {
         &self.width + &self.height
     }

@@ -51,3 +51,10 @@ pub fn get_area() {
 pub fn show_relevance_fn() {
     Rect::relevance_fn(18);
 }
+
+// 解构结构体
+// fn deconstruct_struct() {
+//     let p = Point { x: 0, y: 7 };
+
+//     let Point { x: _a, y: _b } = p;
+// }

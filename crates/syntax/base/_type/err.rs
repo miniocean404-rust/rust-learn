@@ -1,4 +1,4 @@
-#![allow(dead_code)]
+#![allow(warnings)]
 
 // main 函数返回 Result , 在 main 中使用 ? 处理 Result
 // use learn_base::api::use_err;

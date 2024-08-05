@@ -1,4 +1,4 @@
-#![allow(dead_code)]
+#![allow(warnings)]
 
 #[derive(Debug)]
 pub enum IpAddressType {

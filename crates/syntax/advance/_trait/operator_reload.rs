@@ -1,4 +1,4 @@
-#![allow(dead_code)]
+#![allow(warnings)]
 // !运算符重载
 use std::ops::Add;
 

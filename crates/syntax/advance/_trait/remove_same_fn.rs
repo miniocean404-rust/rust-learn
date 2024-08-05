@@ -1,4 +1,4 @@
-#![allow(dead_code)]
+#![allow(warnings)]
 // Rust 既不能避免一个 trait 与另一个 trait 拥有相同名称的方法，也不能阻止为同一类型同时实现这两个 trait。
 // 甚至直接在类型上实现开始已经有的同名方法也是可能的！
 trait Pilot {

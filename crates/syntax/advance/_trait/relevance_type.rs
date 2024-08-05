@@ -1,4 +1,4 @@
-#![allow(dead_code)]
+#![allow(warnings)]
 // 关联类型
 
 struct Counter {

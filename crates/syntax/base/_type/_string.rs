@@ -1,4 +1,4 @@
-#![allow(dead_code)]
+#![allow(warnings)]
 
 // 字符串是字节的集合，一些方法能将字节转换为 字符串
 fn use_string() {

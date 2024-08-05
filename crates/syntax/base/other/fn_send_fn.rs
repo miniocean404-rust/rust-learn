@@ -1,4 +1,4 @@
-#![allow(dead_code)]
+#![allow(warnings)]
 
 fn add_one(x: i32) -> i32 {
     x + 1

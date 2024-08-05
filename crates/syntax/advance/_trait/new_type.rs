@@ -1,4 +1,4 @@
-#![allow(dead_code)]
+#![allow(warnings)]
 // 在第十章的 “为类型实现 trait” 部分，我们提到了孤儿规则（orphan rule），
 // 孤儿规则（orphan rule）：
 //      它说明只要 trait 或类型对于当前 crate 是本地的话就可以在此类型上实现该 trait。

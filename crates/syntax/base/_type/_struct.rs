@@ -1,4 +1,4 @@
-#![allow(dead_code)]
+#![allow(warnings)]
 
 // 用于展示结构体，得到 Debug 派生
 

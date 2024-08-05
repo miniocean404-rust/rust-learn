@@ -1,4 +1,4 @@
-#![allow(dead_code)]
+#![allow(warnings)]
 // 提前定义画的 trait 等待某些组件去实现
 pub trait Draw {
     fn draw(&self);

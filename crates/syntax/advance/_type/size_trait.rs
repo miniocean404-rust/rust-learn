@@ -1,4 +1,4 @@
-#![allow(dead_code)]
+#![allow(warnings)]
 // 因为 Rust 需要知道例如应该为特定类型的值分配多少空间,这样的信息其类型系统的一个特定的位置可能令人迷惑：这就是 动态大小类型（dynamically sized types）的概念。
 // 这有时被称为 “DST” 或 “unsized types”，这些类型允许我们处理只有在运行时才知道大小的类型
 

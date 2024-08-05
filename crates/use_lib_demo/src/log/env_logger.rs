@@ -85,7 +85,7 @@ fn colored_level(style: &mut Style, level: Level) -> StyledValue<'_, &'static st
     }
 }
 
-pub fn use_log() {
+pub fn _use_log() {
     // 导入
     // extern crate log;
 }

@@ -1,4 +1,4 @@
-pub fn use_log4() {
+pub fn _use_log4() {
     // 导入
     // extern crate log;
 

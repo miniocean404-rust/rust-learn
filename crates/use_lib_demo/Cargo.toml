@@ -1,5 +1,5 @@
 [package]
-name = "crate-lib"
+name = "use_lib_demo"
 description.workspace = true
 license.workspace = true
 keywords.workspace = true

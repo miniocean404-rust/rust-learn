@@ -1,11 +1,7 @@
 # 工作空间
 [workspace]
 members = [
-    "run",
-    "derive_example",
-    "derive_declaration_example",
-    "syntax",
-    "crate-lib"
+    "crates/*",
     # "xx/*"
 ]
 
@@ -17,7 +13,12 @@ version = "0.1.0"
 author = "MiniOcean404"
 edition = "2021"
 exclude = ["index.node"] # 发布时要排除的文件。
-include = ["/src", "COPYRIGHT", "/examples", "!/examples/big_example"] # 发布时要包含的文件。
+include = [
+    "/src",
+    "COPYRIGHT",
+    "/examples",
+    "!/examples/big_example",
+] # 发布时要包含的文件。
 rust-version = "1.65.0" # 最小 Rust 版本
 
 [workspace.dependencies]
@@ -28,9 +29,9 @@ rust-version = "1.65.0" # 最小 Rust 版本
 
 [profile.dev]
 opt-level = 0
-codegen-units = 16   # debug build will cause runtime panic if codegen-unints is default
-debug         = 2
-incremental   = true
+codegen-units = 16 # debug build will cause runtime panic if codegen-unints is default
+debug = 2
+incremental = true
 
 # https://doc.rust-lang.org/cargo/reference/profiles.html
 [profile.release]

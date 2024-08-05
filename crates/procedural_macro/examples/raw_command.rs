@@ -1,4 +1,4 @@
-use derive_example::RawBuilder;
+use procedural_macro::RawBuilder;
 
 #[allow(dead_code)]
 #[derive(Debug, RawBuilder)] // 使用RawBuilder派生宏

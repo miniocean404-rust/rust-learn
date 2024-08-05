@@ -1,4 +1,4 @@
-use derive_example::query;
+use procedural_macro::query;
 
 // 文件夹名称必须是 examples
 // 运行 cargo run --example query

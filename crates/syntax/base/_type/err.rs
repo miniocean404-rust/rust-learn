@@ -31,7 +31,7 @@ pub fn use_err() -> Result<String, io::Error> {
 //     });
 // }
 
-//! 将错误转化：
+// 将错误转化：
 // 此处的 From::from 调用意味着我们尝试将错误类型转换为 函数返回的类型。这使得很容易将错误封装到 更高级别的错误。
 /// ```rs
 /// match expression {

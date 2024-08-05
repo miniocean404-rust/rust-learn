@@ -1,11 +1,11 @@
 [package]
-name = "derive_example"
+name = "procedural_macro"
 version = "0.1.0"
 edition = "2021"
 
 [lib]
-name = "derive_example"
-path = "./src/lib.rs"        # The source file of the target.
+name = "procedural_macro"
+path = "./src/lib.rs"     # The source file of the target.
 # 开启过程宏使用
 proc-macro = true
 # test = true            # 是否测试

@@ -1,0 +1,13 @@
+[package]
+name = "declarative_macro"
+description.workspace = true
+license.workspace = true
+keywords.workspace = true
+version.workspace = true
+author.workspace = true
+edition.workspace = true
+exclude.workspace = true
+include.workspace = true
+rust-version.workspace = true
+
+[dependencies]

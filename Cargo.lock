@@ -187,16 +187,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "06ea2b9bc92be3c2baa9334a323ebca2d6f074ff852cd1d7b11064035cd3868f"
 
 [[package]]
-name = "crate-lib"
-version = "0.1.0"
-dependencies = [
- "chrono",
- "env_logger",
- "log",
- "log4rs",
-]
-
-[[package]]
 name = "darling"
 version = "0.20.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -232,6 +222,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "declarative_macro"
+version = "0.1.0"
+
+[[package]]
 name = "derivative"
 version = "2.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -240,22 +234,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 1.0.109",
-]
-
-[[package]]
-name = "derive_declaration_example"
-version = "0.1.0"
-
-[[package]]
-name = "derive_example"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "askama",
- "darling",
- "proc-macro2",
- "quote",
- "syn 2.0.39",
 ]
 
 [[package]]
@@ -631,6 +609,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "procedural_macro"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "askama",
+ "darling",
+ "proc-macro2",
+ "quote",
+ "syn 2.0.39",
+]
+
+[[package]]
 name = "quote"
 version = "1.0.33"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -706,14 +696,6 @@ name = "regex-syntax"
 version = "0.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c08c74e62047bb2de4ff487b251e4a92e24f48745648451635cec7d591162d9f"
-
-[[package]]
-name = "run"
-version = "0.1.0"
-dependencies = [
- "derive_example",
- "syntax_example",
-]
 
 [[package]]
 name = "rustc-demangle"
@@ -961,6 +943,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e0a303d30665362d9680d7d91d78b23f5f899504d4f08b3c4cf08d055d87c0ad"
 dependencies = [
  "destructure_traitobject",
+]
+
+[[package]]
+name = "use_lib_demo"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "env_logger",
+ "log",
+ "log4rs",
 ]
 
 [[package]]

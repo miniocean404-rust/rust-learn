@@ -4,9 +4,9 @@ use procedural_macro::YourTrait;
 #[derive(YourTrait)]
 struct Person {
     #[attr1(name = "alex_name", age = 22, comment = "这是Alex")]
-    name: String,
+    pub name: String,
 
-    age: u32,
+    pub age: u32,
 }
 
 fn main() {
@@ -14,4 +14,6 @@ fn main() {
         name: "Alice".to_string(),
         age: 30,
     };
+
+    dbg!(person.name, person.age);
 }

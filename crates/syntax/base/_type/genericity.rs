@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 // 泛型使用
 
 pub fn use_genericity<T: PartialOrd + Clone>(list: &[T]) -> &T {

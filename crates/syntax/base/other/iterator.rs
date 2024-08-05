@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 pub fn use_iterator() {
     let v1 = vec![1, 2, 3];
 

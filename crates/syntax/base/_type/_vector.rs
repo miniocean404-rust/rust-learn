@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 enum UniteVectorEnum {
     Test(i32),
     Test2(u8),

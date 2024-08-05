@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 #[derive(Debug)]
 pub enum IpAddressType {
     V4(u8, u8, u8, u8),

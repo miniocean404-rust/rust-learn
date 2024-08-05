@@ -1,4 +1,4 @@
-// #![allow(warnings)]
+#![allow(dead_code)]
 
 pub fn ignore_no_use_var() {
     let _x = 5;

@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use std::fmt::Display;
 
 // r 的生命周期长 ，将声明周期短的赋 r 后，短声明周期的内存已经释放所以是错误的

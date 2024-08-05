@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 // !运算符重载
 use std::ops::Add;
 

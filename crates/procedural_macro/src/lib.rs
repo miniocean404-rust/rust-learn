@@ -185,7 +185,7 @@ pub fn query(input: TokenStream) -> TokenStream {
 pub fn your_derive_macro(input: proc_macro::TokenStream) -> TokenStream {
     // struct Person { name : String, age : u32, }
     let struct_frag = input.to_string();
-    let input = parse_macro_input!(input as DeriveInput);
+    let _input = parse_macro_input!(input as DeriveInput);
 
     // 解析属性参数
     let _attr1 = if struct_frag.contains("attr1") {

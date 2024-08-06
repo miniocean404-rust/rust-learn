@@ -237,6 +237,7 @@ pub fn derive_builder(input: TokenStream) -> TokenStream {
     // TokenStream::default()
 }
 
+// https://juejin.cn/post/7344567594086400015?share_token=648fd1f7-8da3-4b45-ad2f-34af240a2411
 #[proc_macro_derive(Optional, attributes(optional))]
 pub fn optional(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);

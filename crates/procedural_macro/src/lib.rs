@@ -4,7 +4,7 @@ mod raw_builder;
 use crate::raw_builder::j2::BuilderContext;
 use proc_macro::TokenStream;
 use quote::quote;
-use syn::{parse_macro_input, DeriveInput, ItemFn};
+use syn::{parse_macro_input, Data, DeriveInput, Ident, ItemFn, Type};
 
 /// # 示例
 /// ```
@@ -20,9 +20,10 @@ use syn::{parse_macro_input, DeriveInput, ItemFn};
 /// 还可以添加参数，在 attr 中可以获取
 /// #[route(hello,"/")]
 #[proc_macro_attribute]
-pub fn my_attribute(attr: TokenStream, item: TokenStream) -> TokenStream {
-    let function_name = attr.to_string();
-    println!("传递函数、结构体参数名字:{}", function_name);
+pub fn my_attribute(attrs: TokenStream, item: TokenStream) -> TokenStream {
+    // let args = parse_macro_input!(attrs as syn::Attribute);
+    let name = attrs.to_string();
+    println!("传递函数、结构体参数名字:{}", name);
     println!("添加宏的函数字符串:{}", item);
 
     let mut result = item.to_string();
@@ -34,7 +35,7 @@ pub fn my_attribute(attr: TokenStream, item: TokenStream) -> TokenStream {
                 println!("这是一个由属性宏生成的自定义函数!");
             }}
         "#,
-        function_name
+        name
     ));
 
     result.parse().unwrap()
@@ -106,7 +107,22 @@ pub fn my_feature(_attr: TokenStream, item: TokenStream) -> TokenStream {
 
     result.parse().unwrap()
 }
-
+///
+/// ```
+/// #[log_func_info]
+/// fn example_function() {
+///     println!("这是函数体内的代码");
+/// }
+///
+/// fn main() {
+///     example_function();
+/// }
+///
+/// ```
+///
+/// 结果：函数开始 example_function
+/// 这是函数体内的代码
+/// 函数结束 example_function
 #[proc_macro_attribute]
 pub fn log_func_info(_: TokenStream, input: TokenStream) -> TokenStream {
     let mut func = parse_macro_input!(input as ItemFn);
@@ -219,4 +235,74 @@ pub fn derive_builder(input: TokenStream) -> TokenStream {
     builder::index::BuilderContext::from(input).render().into()
 
     // TokenStream::default()
+}
+
+#[proc_macro_derive(Optional, attributes(optional))]
+pub fn optional(input: TokenStream) -> TokenStream {
+    let input = parse_macro_input!(input as DeriveInput);
+
+    let ident = input.ident;
+
+    let Data::Struct(data_struct) = input.data else {
+        // 不接受除了结构体之外的类型
+        return syn::Error::new(ident.span(), "optional can only be applied to structs")
+            .into_compile_error()
+            .into();
+    };
+
+    let optional_struct_name = &format!("Optional{}", ident); // OptionalPicea
+    let optional_struct_ident = Ident::new(optional_struct_name, ident.span());
+
+    let fields: Vec<_> = data_struct
+        .fields
+        .iter()
+        .map(|field| {
+            // 对每个字段进行映射
+            let mut ident = field.ident.clone();
+            let ty = &field.ty;
+
+            let mut is_skip = false;
+
+            let attr = field
+                .attrs
+                .iter()
+                .find(|attr| attr.path().is_ident("optional"));
+
+            if let Some(attr) = attr {
+                let _ = attr.parse_nested_meta(|meta| {
+                    if meta.path.is_ident("skip") {
+                        is_skip = true;
+                    } else if meta.path.is_ident("rename") {
+                        let renamed_ident = meta.value()?.parse::<syn::Ident>()?;
+                        ident = Some(renamed_ident);
+                    }
+                    Ok(())
+                });
+            }
+
+            if is_skip || is_option(ty) {
+                return quote::quote!(#ident: #ty);
+            }
+
+            quote::quote!(#ident: Option<#ty>)
+        })
+        .collect();
+
+    quote::quote! {
+        struct #optional_struct_ident {
+            #(#fields,)*
+        }
+    }
+    .into()
+}
+
+fn is_option(ty: &Type) -> bool {
+    let Type::Path(path) = ty else {
+        return false;
+    };
+    let path = &path.path;
+    path.segments
+        .last()
+        .map(|segment| segment.ident == "Option")
+        .unwrap_or(false)
 }

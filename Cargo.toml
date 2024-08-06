@@ -12,6 +12,7 @@ keywords = ["rust", "learn"]
 version = "0.1.0"
 author = "MiniOcean404"
 edition = "2021"
+resolver = "2"
 exclude = ["index.node"] # 发布时要排除的文件。
 include = [
     "/src",

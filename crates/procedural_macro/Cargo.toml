@@ -26,17 +26,17 @@ my_feature = []
 [dependencies]
 # 解析 rust 源码: 对 TokenStream 解析的库，它提供了丰富的数据结构，对语法树中遇到的各种 Rust 语法都有支持。
 # syn crate 默认所有数据结构都不带一些基本的 trait，比如 Debug，所以如果想打印数据结构的话，需要使用 extra-traits feature
-syn = { version = "2.0.39", features = ["full"] }
+syn = { version = "2.0.72", features = ["full"] }
 
 # quote 用于将 Rust 语法树数据结构转化为源代码。
-quote = "1.0.33"
+quote = "1.0.36"
 
 # 可以很方便的处理宏里面 attributes
-darling = "0.20.3"
+darling = "0.20.10"
 
 # 由于 syn/quote 生成的 TokenStream 是 proc-macro2 的类型，所以还需要使用proc-macro2库，
 # 它是对 proc-macro 的简单封装，使用起来更方便，而且可以让过程宏可以单元测试
-proc-macro2 = "1.0.70"
+proc-macro2 = "1.0.86"
 
-anyhow = "1.0.75"
+anyhow = "1.0.86"
 askama = "0.12.1"

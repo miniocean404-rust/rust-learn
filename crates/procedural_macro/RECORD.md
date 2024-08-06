@@ -1,0 +1,76 @@
+# 过程宏
+
+## 简介
+
+过程宏：是一种更为高级的宏，它通过编写 Rust 代码来处理输入的代码，并在编译期间生成新的代码。
+
+过程宏主要用于：
+
+1. 属性宏（Attribute Macros）、
+2. 类函数宏（Function-Like Macros）
+3. 派生宏（Derive Macros）等场景。
+
+### 属性宏特点：
+
+1. 代码定制化处理：属性宏允许开发者在代码上方添加自定义的属性，并根据属性的输入对代码进行定制化处理。这使得开发者可以根据需要修改代码的结构和行为。
+2. 编译期间执行：属性宏在编译期间执行，而不是运行时执行。这意味着宏生成的代码在编译时就已经确定，不会增加运行时的性能开销。
+3. 代码安全性：属性宏生成的代码必须是合法的 Rust 代码，它们受到 Rust 编译器的类型检查和安全检查。这保证了宏生成的代码不会引入潜在的编译错误和安全漏洞。
+
+### 属性宏的局限性
+
+虽然属性宏在 Rust 中非常强大，但它也有一些局限性需要注意：
+
+1. 仅适用于特定项：属性宏只能应用于`函数、结构体、枚举等特定的项`，而`不能应用于表达式等其他类型`的代码。
+2. 无法修改输入项：属性宏`只能生成新的代码，而不能修改输入项的内容`。例如，无法在函数内部添加新的语句或修改函数的签名。
+3. 不支持模式匹配：与声明宏不同，`属性宏不能进行模式匹配，只能对整个输入项进行处理`。
+
+## 示例：
+
+> 定义示例
+
+```rust
+use proc_macro::TokenStream;
+
+#[proc_macro_attribute]
+pub fn my_attribute(attr: TokenStream, item: TokenStream) -> TokenStream {
+    let function_name = attr.to_string();
+    println!("传递函数、结构体参数名字:{}", function_name);
+    println!("添加宏的函数字符串:{}", item);
+
+    let mut result = item.to_string();
+
+    // r# 不用添加转义符号
+    result.push_str(&format!(
+        r#"
+            fn {}() {{
+                println!("这是一个由属性宏生成的自定义函数!");
+            }}
+        "#,
+        function_name
+    ));
+
+    result.parse().unwrap()
+}
+```
+
+> 使用示例
+
+```rust
+#[my_attribute(hello)]
+fn use_attribute_derive() {
+    println!("函数本身的调用")
+}
+
+fn main() {
+    hello();
+}
+```
+
+## 参考文章
+
+https://blog.csdn.net/qq_21484461/article/details/132087772
+https://juejin.cn/post/7264597522031083574
+https://www.wenjiangs.com/doc/lag8vvcn
+https://zhuanlan.zhihu.com/p/608978583
+https://juejin.cn/post/7264503343997304886#heading-5
+https://www.jianshu.com/p/fc0ed4f4d661

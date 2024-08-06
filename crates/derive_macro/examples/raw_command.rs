@@ -1,7 +1,7 @@
-use procedural_macro::RawBuilder;
+use derive_macro::TemplateEngine;
 
 #[allow(dead_code)]
-#[derive(Debug, RawBuilder)] // 使用RawBuilder派生宏
+#[derive(Debug, TemplateEngine)] // 使用RawBuilder派生宏
 pub struct Command {
     executable: String,
     args: Vec<String>,

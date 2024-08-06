@@ -1,7 +1,7 @@
 use proc_macro::{Ident, TokenStream, TokenTree};
 use std::collections::VecDeque;
 
-use super::j2::Fd;
+use super::j2::FieldInfo;
 
 /// 把 TokenStream 分出 struct 的名字，和包含 fields 的 TokenStream
 pub fn split(input: TokenStream) -> (Ident, TokenStream) {
@@ -20,7 +20,7 @@ pub fn split(input: TokenStream) -> (Ident, TokenStream) {
     if let Some(TokenTree::Ident(v)) = input.pop_front() {
         ident = v;
     } else {
-        panic!("Didn't find struct name");
+        panic!("没有找到结构名称");
     }
 
     // struct 后面可能还有若干 TokenTree，我们不管，一路找到第一个 Group
@@ -32,11 +32,11 @@ pub fn split(input: TokenStream) -> (Ident, TokenStream) {
         }
     }
 
-    (ident, group.expect("Didn't find field group").stream())
+    (ident, group.expect("未找到字段组").stream())
 }
 
 /// 核心方法，从包含 fields 的 TokenStream 中切出来一个个 Fd，例如把一个 a=1,b=2 的字符串切成 [[a, 1], [b, 2]]
-pub fn get_struct_fields(input: TokenStream) -> Vec<Fd> {
+pub fn get_struct_fields(input: TokenStream) -> Vec<FieldInfo> {
     let input = input.into_iter().collect::<Vec<TokenTree>>();
 
     input
@@ -60,6 +60,6 @@ pub fn get_struct_fields(input: TokenStream) -> Vec<Fd> {
         // 正常情况下，应该得到 [&[TokenTree], &[TokenTree]]，对于切出来长度不为 2 的统统过滤掉
         .filter(|tokens| tokens.len() == 2)
         // 使用 Fd::new 创建出每个 Fd
-        .map(|tokens| Fd::new(tokens[0], tokens[1]))
+        .map(|tokens| FieldInfo::new(tokens[0], tokens[1]))
         .collect()
 }

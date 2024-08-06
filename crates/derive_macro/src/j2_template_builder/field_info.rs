@@ -1,47 +1,14 @@
-use anyhow::Result;
-use askama::Template;
-use proc_macro::{TokenStream, TokenTree};
-
-use super::index::{get_struct_fields, split};
-
-/// 处理 jinja 模板的数据结构，builder.j2为模板，在模板中使用了 name / builder_name / fields
-#[derive(Template)]
-#[template(path = "builder.j2", escape = "none")]
-pub struct BuilderContext {
-    name: String,
-    builder_name: String,
-    fields: Vec<Fd>,
-}
-
-impl BuilderContext {
-    /// 从 TokenStream 中提取信息，构建 BuilderContext
-    fn new(input: TokenStream) -> Self {
-        let (name, input) = split(input);
-        let fields = get_struct_fields(input);
-
-        Self {
-            builder_name: format!("{}Builder", name),
-            name: name.to_string(),
-            fields,
-        }
-    }
-
-    /// 把模板渲染成字符串代码
-    pub fn render(input: TokenStream) -> Result<String> {
-        let template = Self::new(input);
-        Ok(template.render()?)
-    }
-}
+use proc_macro::TokenTree;
 
 /// 描述 struct 的每个 field
 #[derive(Debug, Default)]
-pub struct Fd {
+pub struct FieldInfo {
     name: String,
     ty: String,
     optional: bool,
 }
 
-impl Fd {
+impl FieldInfo {
     /// name 和 field 都是通过冒号 Punct 切分出来的 TokenTree 切片
     pub fn new(name: &[TokenTree], ty: &[TokenTree]) -> Self {
         // 把类似 Ident("Option"), Punct('<'), Ident("String"), Punct('>) 的 ty

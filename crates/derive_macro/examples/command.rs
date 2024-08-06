@@ -1,6 +1,6 @@
-use procedural_macro::Builder;
+use derive_macro::Builder;
 
-// 运行 cargo run --example command
+// 运行 // 运行 cargo r -p derive_macro --example derive_macro
 #[allow(dead_code)]
 #[derive(Debug, Builder)]
 pub struct Command {

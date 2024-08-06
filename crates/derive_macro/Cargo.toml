@@ -1,0 +1,46 @@
+[package]
+name = "derive_macro"
+description.workspace = true
+license.workspace = true
+keywords.workspace = true
+version.workspace = true
+edition.workspace = true
+exclude.workspace = true
+include.workspace = true
+rust-version.workspace = true
+
+[lib]
+name = "derive_macro"
+path = "./src/lib.rs"
+# 开启过程宏使用
+proc-macro = true
+# test = true            # 是否测试
+# doctest = true         # 测试文档示例
+# bench = true           # 基准测试
+# doc = true             # 文档
+# harness = true         # Use libtest harness.
+# edition = "2015"       # 目标版本
+# crate-type = ["lib"]   # 要生成的crate类型
+# required-features = [] # 构建此目标所需的特性(lib的N/A)。
+
+[features]
+# 设置默认 features 的值
+default = ["my_feature"]
+# 定义 feature 的值
+my_feature = []
+
+[dependencies]
+anyhow.workspace = true
+
+# 解析 rust 源码: 对 TokenStream 解析的库，它提供了丰富的数据结构，对语法树中遇到的各种 Rust 语法都有支持。
+# syn crate 默认所有数据结构都不带一些基本的 trait，比如 Debug，所以如果想打印数据结构的话，需要使用 extra-traits feature
+syn.workspace = true
+# quote 用于将 Rust 语法树数据结构转化为源代码。
+quote.workspace = true
+# 可以很方便的处理宏里面 attributes
+darling.workspace = true
+# 由于 syn/quote 生成的 TokenStream 是 proc-macro2 的类型，所以还需要使用proc-macro2库，
+# 它是对 proc-macro 的简单封装，使用起来更方便，而且可以让过程宏可以单元测试
+proc-macro2.workspace = true
+
+askama.workspace = true

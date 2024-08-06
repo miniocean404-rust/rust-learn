@@ -98,6 +98,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "attribute_macro"
+version = "0.1.0"
+dependencies = [
+ "darling",
+ "proc-macro2",
+ "quote",
+ "syn 2.0.72",
+]
+
+[[package]]
 name = "autocfg"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -237,6 +247,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "derive_macro"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "askama",
+ "darling",
+ "proc-macro2",
+ "quote",
+ "syn 2.0.72",
+]
+
+[[package]]
 name = "destructure_traitobject"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -270,6 +292,16 @@ name = "fnv"
 version = "1.0.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3f9eec918d3f24069decb9af1554cad7c880e2da24a9afd88aca000531ab82c1"
+
+[[package]]
+name = "function_like_macro"
+version = "0.1.0"
+dependencies = [
+ "darling",
+ "proc-macro2",
+ "quote",
+ "syn 2.0.72",
+]
 
 [[package]]
 name = "getrandom"
@@ -606,18 +638,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5e719e8df665df0d1c8fbfd238015744736151d4445ec0836b8e628aae103b77"
 dependencies = [
  "unicode-ident",
-]
-
-[[package]]
-name = "procedural_macro"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "askama",
- "darling",
- "proc-macro2",
- "quote",
- "syn 2.0.72",
 ]
 
 [[package]]

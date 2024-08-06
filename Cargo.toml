@@ -1,5 +1,6 @@
 # 工作空间
 [workspace]
+resolver = "2"
 members = [
     "crates/*",
     # "xx/*"
@@ -10,9 +11,7 @@ description = "搜索后展示的描述字段"
 license = "MIT OR Apache-2.0"
 keywords = ["rust", "learn"]
 version = "0.1.0"
-author = "MiniOcean404"
 edition = "2021"
-resolver = "2"
 exclude = ["index.node"] # 发布时要排除的文件。
 include = [
     "/src",
@@ -23,7 +22,20 @@ include = [
 rust-version = "1.65.0" # 最小 Rust 版本
 
 [workspace.dependencies]
+anyhow = "1.0.86"
 
+# 解析 rust 源码: 对 TokenStream 解析的库，它提供了丰富的数据结构，对语法树中遇到的各种 Rust 语法都有支持。
+# syn crate 默认所有数据结构都不带一些基本的 trait，比如 Debug，所以如果想打印数据结构的话，需要使用 extra-traits feature
+syn = { version = "2.0.72", features = ["full"] }
+# quote 用于将 Rust 语法树数据结构转化为源代码。
+quote = "1.0.36"
+# 可以很方便的处理宏里面 attributes
+darling = "0.20.10"
+# 由于 syn/quote 生成的 TokenStream 是 proc-macro2 的类型，所以还需要使用proc-macro2库，
+# 它是对 proc-macro 的简单封装，使用起来更方便，而且可以让过程宏可以单元测试
+proc-macro2 = "1.0.86"
+
+askama = "0.12.1"
 
 # cargo watch -x "run"
 # cargo-watch = "8.1.2"

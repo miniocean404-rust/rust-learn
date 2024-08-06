@@ -1,56 +1,14 @@
 use proc_macro2::{Ident, TokenStream};
 use quote::quote;
-use syn::{Data, DataStruct, DeriveInput, Field, Fields, FieldsNamed, GenericArgument, Path, Type, TypePath};
-
-/// 我们需要的描述一个字段的所有信息
-struct Fd {
-    name: Ident,
-    ty: Type,
-    optional: bool,
-}
+use syn::{
+    Data, DataStruct, DeriveInput, Fields, FieldsNamed,
+};
+use crate::j2_template_builder::j2::FieldInfo;
 
 /// 我们需要的描述一个 struct 的所有信息
 pub struct BuilderContext {
     name: Ident,
-    fields: Vec<Fd>,
-}
-
-/// 把一个 Field 转换成 Fd
-impl From<Field> for Fd {
-    fn from(f: Field) -> Self {
-        let (optional, ty) = get_option_inner(&f.ty);
-        Self {
-            // 此时，我们拿到的是 NamedFields，所以 ident 必然存在
-            name: f.ident.unwrap(),
-            optional,
-            ty: ty.to_owned(),
-        }
-    }
-}
-
-// 如果是 T = Option<Inner>，返回 (true, Inner)；否则返回 (false, T)
-fn get_option_inner(ty: &Type) -> (bool, &Type) {
-    // 首先模式匹配出 segments
-    if let Type::Path(TypePath {
-        path: Path { segments, .. }, ..
-    }) = ty
-    {
-        if let Some(v) = segments.iter().next() {
-            if v.ident == "Option" {
-                // 如果 PathSegment 第一个是 Option，那么它内部应该是 AngleBracketed，比如 <T>
-                // 获取其第一个值，如果是 GenericArgument::Type，则返回
-                let t = match &v.arguments {
-                    syn::PathArguments::AngleBracketed(a) => match a.args.iter().next() {
-                        Some(GenericArgument::Type(t)) => t,
-                        _ => panic!("不确定如何处理其他GenericArgument"),
-                    },
-                    _ => panic!("不确定如何处理其他PathArguments"),
-                };
-                return (true, t);
-            }
-        }
-    }
-    (false, ty)
+    fields: Vec<FieldInfo>,
 }
 
 /// 把 DeriveInput 转换成 BuilderContext
@@ -59,9 +17,9 @@ impl From<DeriveInput> for BuilderContext {
         let name = input.ident;
 
         let fields = if let Data::Struct(DataStruct {
-            fields: Fields::Named(FieldsNamed { named, .. }),
-            ..
-        }) = input.data
+                                             fields: Fields::Named(FieldsNamed { named, .. }),
+                                             ..
+                                         }) = input.data
         {
             named
         } else {
@@ -70,7 +28,7 @@ impl From<DeriveInput> for BuilderContext {
 
         // println!("{:#?}", fields);
 
-        let fds = fields.into_iter().map(Fd::from).collect();
+        let fds = fields.into_iter().map(FieldInfo::from).collect();
 
         Self { name, fields: fds }
     }
@@ -118,7 +76,7 @@ impl BuilderContext {
     fn gen_optionized_fields(&self) -> Vec<TokenStream> {
         self.fields
             .iter()
-            .map(|Fd { name, ty, .. }| quote! { #name: std::option::Option<#ty> })
+            .map(|FieldInfo { name, ty, .. }| quote! { #name: std::option::Option<#ty> })
             .collect()
     }
 
@@ -127,7 +85,7 @@ impl BuilderContext {
     fn gen_methods(&self) -> Vec<TokenStream> {
         self.fields
             .iter()
-            .map(|Fd { name, ty, .. }| {
+            .map(|FieldInfo { name, ty, .. }| {
                 quote! {
                     pub fn #name(mut self, v: impl Into<#ty>) -> Self {
                         self.#name = Some(v.into());
@@ -143,7 +101,7 @@ impl BuilderContext {
     fn gen_assigns(&self) -> Vec<TokenStream> {
         self.fields
             .iter()
-            .map(|Fd { name, optional, .. }| {
+            .map(|FieldInfo { name, optional, .. }| {
                 if *optional {
                     return quote! {
                         #name: self.#name.take()

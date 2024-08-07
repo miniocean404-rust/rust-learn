@@ -1,8 +1,8 @@
-use anyhow::Result;
-use askama::Template;
-use proc_macro::{TokenStream};
 use crate::j2_template_builder::field_info::FieldInfo;
 use crate::j2_template_builder::utils::{get_struct_fields, split};
+use anyhow::Result;
+use askama::Template;
+use proc_macro::TokenStream;
 
 /// 处理 jinja 模板的数据结构，builder.j2为模板，在模板中使用了 name / builder_name / fields
 #[derive(Template)]
@@ -32,5 +32,3 @@ impl BuilderContext {
         Ok(template.render()?)
     }
 }
-
-

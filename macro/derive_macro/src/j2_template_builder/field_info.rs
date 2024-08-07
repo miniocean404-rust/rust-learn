@@ -3,9 +3,9 @@ use proc_macro::TokenTree;
 /// 描述 struct 的每个 field
 #[derive(Debug, Default)]
 pub struct FieldInfo {
-    name: String,
-    ty: String,
-    optional: bool,
+    pub name: String,
+    pub ty: String,
+    pub optional: bool,
 }
 
 impl FieldInfo {

@@ -1,7 +1,7 @@
 use proc_macro::{Ident, TokenStream, TokenTree};
 use std::collections::VecDeque;
 
-use super::j2::FieldInfo;
+use super::field_info::FieldInfo;
 
 /// 把 TokenStream 分出 struct 的名字，和包含 fields 的 TokenStream
 pub fn split(input: TokenStream) -> (Ident, TokenStream) {

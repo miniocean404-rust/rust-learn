@@ -1,9 +1,8 @@
 use proc_macro2::{Ident, TokenStream};
 use quote::quote;
-use syn::{
-    Data, DataStruct, DeriveInput, Fields, FieldsNamed,
-};
-use crate::j2_template_builder::j2::FieldInfo;
+use syn::{Data, DataStruct, DeriveInput, Fields, FieldsNamed};
+
+use super::field_info::FieldInfo;
 
 /// 我们需要的描述一个 struct 的所有信息
 pub struct BuilderContext {
@@ -17,9 +16,9 @@ impl From<DeriveInput> for BuilderContext {
         let name = input.ident;
 
         let fields = if let Data::Struct(DataStruct {
-                                             fields: Fields::Named(FieldsNamed { named, .. }),
-                                             ..
-                                         }) = input.data
+            fields: Fields::Named(FieldsNamed { named, .. }),
+            ..
+        }) = input.data
         {
             named
         } else {

@@ -1,6 +1,7 @@
 use proc_macro::TokenStream;
 
-// 函数宏
+/// 函数宏
+/// 运行命令 `cargo r -p function_like_macro --example query`
 #[proc_macro]
 pub fn query(input: TokenStream) -> TokenStream {
     // 这里面 TokenStream 是一个 Iterator，里面包含一系列的 TokenTree：

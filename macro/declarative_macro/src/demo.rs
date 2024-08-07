@@ -47,3 +47,13 @@ macro_rules! sum {
         }
     };
 }
+
+#[macro_export]
+macro_rules! json {
+    (null) => { Json::Null };
+    ([ $( $element:expr ),* ]) => { Json::Arrary(vec![ $($element),* ]) };
+    ({...}) => { Json::Object(....) };
+    (???) => { Json::Boolean(...) };
+    (???) => { Json::Number(...) };
+    (???) => { Json::String(...) };
+  }

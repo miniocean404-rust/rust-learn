@@ -36,6 +36,7 @@ all-features = true
 # 例：给 rustdoc 传递参数，可以根据这个配置标志在代码中使用#[cfg(docsrs)]属性来标记，只有在文档生成时才会包含这些被标记的内容
 rustdoc-args = ["--cfg", "docsrs"]
 
+# optional：可选依赖项不会默认包含在最终构建中，只有在启用相应的 feature 时才会包含在构建中(dep:xxx)
 [workspace.dependencies]
 anyhow = "1.0.86"
 

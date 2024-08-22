@@ -3,7 +3,7 @@
 resolver = "2"
 members = [
     "crates/*",
-    "macro/*"
+    "macro/*",
     # "xx/*"
 ]
 
@@ -21,6 +21,20 @@ include = [
     "!/examples/big_example",
 ] # 发布时要包含的文件。
 rust-version = "1.65.0" # 最小 Rust 版本
+
+# 文件中的函数需要添加 #[bench] 属性 才会测试，运行命令：cargo bench
+# [[bench]]
+# 基准测试的文件路径，
+# path = "benches/decode.rs"
+# 指定基准测试的名称
+# name = "decode"
+# 指定是否使用默认的基准测试框架。设置为 false 时，表示不使用默认的基准测试框架。
+# harness = false
+
+[workspace.metadata.docs.rs]
+all-features = true
+# 例：给 rustdoc 传递参数，可以根据这个配置标志在代码中使用#[cfg(docsrs)]属性来标记，只有在文档生成时才会包含这些被标记的内容
+rustdoc-args = ["--cfg", "docsrs"]
 
 [workspace.dependencies]
 anyhow = "1.0.86"

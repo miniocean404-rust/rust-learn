@@ -1,3 +1,4 @@
+pub mod display;
 pub mod extend_trait;
 pub mod new_type;
 pub mod operator_reload;

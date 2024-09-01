@@ -1,9 +1,10 @@
 #![allow(warnings)]
+// 孤儿原则：
 // 在第十章的 “为类型实现 trait” 部分，我们提到了孤儿规则（orphan rule），
 // 孤儿规则（orphan rule）：
 //      它说明只要 trait 或类型对于当前 crate 是本地的话就可以在此类型上实现该 trait。
 
-// 一个绕开这个限制的方法是使用 newtype 模式
+// 一个绕开这个限制的方法是使用 newtype（创建新的类型） 模式
 // 此方法的缺点是，因为 Wrapper 是一个新类型，它没有定义于其值之上的方法；必须直接在 Wrapper 上实现 Vec<T> 的所有方法，
 // 这样就可以代理到self.0 上
 // —— 这就允许我们完全像 Vec<T> 那样对待 Wrapper。

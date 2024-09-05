@@ -1,14 +1,16 @@
 // 动态 Trait 转为指定类型
 // 动态 Trait 介绍 oo -> dyn_trait
 
-use std::{any::Any, error::Error, sync::Arc};
+use std::{any::Any, error::Error, fmt::Debug, sync::Arc};
 
+#[derive(Debug)]
 pub struct DevlopmentMode {
     name: String,
 }
 
 impl Mode for DevlopmentMode {}
 
+#[derive(Debug)]
 pub struct TestingMode {
     name: String,
 }
@@ -16,7 +18,7 @@ pub struct TestingMode {
 impl Mode for TestingMode {}
 
 // 最好不要实现 Copy 和 Clone，因为它们返回 Self 导致转化不是一个 object-safe trait
-pub trait Mode {}
+pub trait Mode: Any + Debug {}
 
 pub fn use_box_mode<M: Mode + 'static>(mode: M) -> Result<(), Box<dyn Error>> {
     let mode = Box::new(mode) as Box<dyn Any>;

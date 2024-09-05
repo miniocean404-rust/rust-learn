@@ -3,22 +3,32 @@
 
 use std::{any::Any, error::Error, fmt::Debug, sync::Arc};
 
+// 最好不要实现 Copy 和 Clone，因为它们返回 Self 导致转化不是一个 object-safe trait
+pub trait Mode: Any + Debug {
+    fn as_any(&self) -> &dyn Any;
+}
+
 #[derive(Debug)]
 pub struct DevlopmentMode {
     name: String,
 }
 
-impl Mode for DevlopmentMode {}
+impl Mode for DevlopmentMode {
+    fn as_any(&self) -> &dyn Any {
+        self
+    }
+}
 
 #[derive(Debug)]
 pub struct TestingMode {
     name: String,
 }
 
-impl Mode for TestingMode {}
-
-// 最好不要实现 Copy 和 Clone，因为它们返回 Self 导致转化不是一个 object-safe trait
-pub trait Mode: Any + Debug {}
+impl Mode for TestingMode {
+    fn as_any(&self) -> &dyn Any {
+        self
+    }
+}
 
 pub fn use_box_mode<M: Mode + 'static>(mode: M) -> Result<(), Box<dyn Error>> {
     let mode = Box::new(mode) as Box<dyn Any>;
